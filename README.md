@@ -179,7 +179,7 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
 
 ## Captain Endpoints
 
-### Captain Registration
+### <u>Captain Registration</u>
 
 **Endpoint:** `POST /captains/register`
 
@@ -255,3 +255,46 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
   ]
 }
 ```
+
+<br/><br/>
+
+### <u> Captain Profile </u>
+
+**Endpoint:** `GET /captains/profile`
+
+**Description:** Retrieves the authenticated captain's profile information.
+
+**Headers:**
+
+- `Authorization: Bearer <jwt_token>`
+
+**Response:**
+
+- **Success (200):**
+
+```json
+{
+  "captain": {
+    "_id": "captain_id",
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "socketId": null,
+    "status": "inactive",
+    "vehicle": {
+      "color": "string",
+      "plate": "string",
+      "capacity": 1,
+      "vehicleType": "car",
+      "location": {
+        "lat": null,
+        "lng": null
+      }
+    }
+  }
+}
+```
+
+- **Error (401):** Unauthorized if no valid token provided.
