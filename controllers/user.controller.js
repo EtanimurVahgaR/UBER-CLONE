@@ -49,6 +49,11 @@ module.exports.loginUser = async (req, res, next) => {
   res.status(200).json({ token, user });
 };
 
+// get user profile
+module.exports.getUserProfile = async (req, res, next) => {
+  res.status(200).json({ user: req.user });
+};
+
 // logout user
 module.exports.logoutUser = async (req, res) => {
   res.clearCookie("token");
