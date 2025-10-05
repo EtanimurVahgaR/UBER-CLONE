@@ -61,3 +61,56 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
   ]
 }
 ```
+
+<br><br>
+
+### <u>User Login</u>
+
+**Endpoint:** `POST /users/login`
+
+**Description:** Authenticates a user and returns a JWT token.
+
+**Request Body:**
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+**Validation Rules:**
+
+- `email`: Must be a valid email address.
+- `password`: Must be at least 6 characters long.
+
+**Response:**
+
+- **Success (200):**
+
+```json
+{
+  "token": "jwt_token_here",
+  "user": {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "socketId": null
+  }
+}
+```
+
+- **Error (400):**
+
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid Credentials"
+    }
+  ]
+}
+```
