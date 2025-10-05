@@ -298,3 +298,32 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
 ```
 
 - **Error (401):** Unauthorized if no valid token provided.
+  <br><br>
+
+### <u> Captain Logout </u>
+
+**Endpoint:** `POST /captains/logout`
+
+**Description:** Logs out the captain by clearing the authentication cookie and blacklisting the token.
+
+**Headers (optional):**
+
+- `Authorization: Bearer <jwt_token>` (if not using cookies)
+
+**Response:**
+
+- **Success (200):**
+
+```json
+{
+  "msg": "Logged out successfully"
+}
+```
+
+- **Error (400):**
+
+```json
+{
+  "msg": "No token found"
+}
+```
