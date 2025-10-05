@@ -114,3 +114,65 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
   ]
 }
 ```
+
+<br><br>
+
+### <u> User Profile </u>
+
+**Endpoint:** `GET /users/profile`
+
+**Description:** Retrieves the authenticated user's profile information.
+
+**Headers:**
+
+- `Authorization: Bearer <jwt_token>`
+
+**Response:**
+
+- **Success (200):**
+
+```json
+{
+  "user": {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "socketId": null
+  }
+}
+```
+
+- **Error (401):** Unauthorized if no valid token provided.
+
+<br/><br/>
+
+### <u>User Logout</u>
+
+**Endpoint:** `POST /users/logout`
+
+**Description:** Logs out the user by clearing the authentication cookie and blacklisting the token.
+
+**Headers (optional):**
+
+- `Authorization: Bearer <jwt_token>` (if not using cookies)
+
+**Response:**
+
+- **Success (200):**
+
+```json
+{
+  "msg": "Logged out successfully"
+}
+```
+
+- **Error (400):**
+
+```json
+{
+  "msg": "No token found"
+}
+```
