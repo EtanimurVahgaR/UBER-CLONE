@@ -176,3 +176,82 @@ This backend is built with Node.js, Express, and MongoDB using Mongoose.
   "msg": "No token found"
 }
 ```
+
+## Captain Endpoints
+
+### Captain Registration
+
+**Endpoint:** `POST /captains/register`
+
+**Description:** Registers a new captain in the system.
+
+**Request Body:**
+
+```json
+{
+  "fullname": {
+    "firstname": "string",
+    "lastname": "string"
+  },
+  "email": "string",
+  "password": "string",
+  "vehicle": {
+    "color": "string",
+    "plate": "string",
+    "capacity": "number",
+    "vehicleType": "string ( car , bike , auto )"
+  }
+}
+```
+
+**Validation Rules:**
+
+- `email`: Must be a valid email address.
+- `fullname.firstname`: Must be at least 3 characters long.
+- `password`: Must be at least 6 characters long.
+- `vehicle.color`: Must be at least 3 characters long.
+- `vehicle.plate`: Must be at least 3 characters long.
+- `vehicle.capacity`: Must be at least 1.
+- `vehicle.vehicleType`: Must be one of "car", "bike", or "auto".
+
+**Response:**
+
+- **Success (201):**
+
+```json
+{
+  "token": "jwt_token_here",
+  "captain": {
+    "_id": "captain_id",
+    "fullname": {
+      "firstname": "string",
+      "lastname": "string"
+    },
+    "email": "string",
+    "socketId": null,
+    "status": "inactive",
+    "vehicle": {
+      "color": "string",
+      "plate": "string",
+      "capacity": "number",
+      "vehicleType": "string",
+      "location": {
+        "lat": null,
+        "lng": null
+      }
+    }
+  }
+}
+```
+
+- **Error (400):**
+
+```json
+{
+  "errors": [
+    {
+      "msg": "Captain with this email already exists"
+    }
+  ]
+}
+```
